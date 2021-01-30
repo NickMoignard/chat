@@ -1,0 +1,9 @@
+<div>
+    <% if user_signed_in? %>
+        <%= button_to "logout", destroy_user_session_path, method: :delete  %>
+        <p><%= @welcome_msg %>
+    <% else %>
+        <%= button_to "Sign In", new_user_session_path, method: :get %>
+        <p>not signed in</p>
+    <% end %>
+</div>
