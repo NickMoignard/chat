@@ -39,4 +39,8 @@ class User
 
   field :name, type: String
   index({ name: 1 }, { unique: true, name: "name_index" })
+
+  has_and_belongs_to_many :forums
+  has_many :comments, :inverse_of => nil
+  has_many :posts, :inverse_of => nil
 end
