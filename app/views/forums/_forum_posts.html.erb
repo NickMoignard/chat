@@ -1,0 +1,20 @@
+
+<table >
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody id="posts">
+
+    <%= render @posts %>
+
+  </tbody>
+</table>
+
+<br>
+<%= render 'post_form', :locals => { :@forum => @forum, :@post => @post } %>
+

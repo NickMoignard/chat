@@ -1,4 +1,8 @@
 class Post
+
+
+  # TODO #4 add voting to posts and comments
+
   include Mongoid::Document
   include Mongoid::Timestamps
   field :title, type: String
@@ -27,4 +31,9 @@ class Post
   # def self.add_down_vote
   #   self.decrement(:down_vote, 1)
   # end
+
+
+  scope :for_display, -> { order_by(:created_at => :desc).limit(50) }
+
+
 end

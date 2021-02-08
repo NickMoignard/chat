@@ -1,0 +1,8 @@
+// render new post
+var tbody = document.getElementById("posts");
+tbody.innerHTML = "<%= j render @post %>" + tbody.innerHTML;
+
+$('input').each((e) => {
+    e.value = '';
+    e.focus();
+});

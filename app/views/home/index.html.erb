@@ -1,4 +1,4 @@
-<div>
+<div class="container">
     <% if user_signed_in? %>
         <%= button_to "logout", destroy_user_session_path, method: :delete  %>
         <p><%= @welcome_msg %>
@@ -6,4 +6,29 @@
         <%= button_to "Sign In", new_user_session_path, method: :get %>
         <p>not signed in</p>
     <% end %>
+
+    <div>
+        <% @forums.each do |forum| %>
+            <div class="forum">
+                <h2><%= forum.title %></h2>
+                <p><%= forum.description %></p>
+                <hr/>
+                <h4>Posts</h4>
+                <% forum.posts.each do |post| %>
+                    <div class="post">
+                        <p><%= post.title %></p>
+                        <p class="username"><%= post.user.name %></p>
+                    </div>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+
+
+
+
+
+
+
+
 </div>

@@ -1,0 +1,19 @@
+.login-div {
+    max-width: 50vw;
+    padding: 40px;
+    margin: 20px auto;
+    background-color: white;
+    label, input {
+        width: calc(100% - 4.8px);
+    }
+
+    #user_remember_me {
+        width: auto;
+    }
+    * {
+        padding-bottom: 10px;
+    }
+}
+
+
+

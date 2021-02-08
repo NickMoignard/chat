@@ -1,13 +1,16 @@
 class ForumsController < ApplicationController
   before_action :set_forum, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /forums or /forums.json
   def index
-    @forums = Forum.all
+    @forums = Forum.all 
   end
 
   # GET /forums/1 or /forums/1.json
   def show
+    @post = current_user.posts.build
+
   end
 
   # GET /forums/new
@@ -22,6 +25,9 @@ class ForumsController < ApplicationController
   # POST /forums or /forums.json
   def create
     @forum = Forum.new(forum_params)
+    @forum.creator_id = current_user._id
+    @forum.users << current_user
+
 
     respond_to do |format|
       if @forum.save
@@ -56,10 +62,32 @@ class ForumsController < ApplicationController
     end
   end
 
+
+  def new_post
+    # post = current_user.posts.build(post_params)
+    
+    @post = current_user.posts.build(post_params)
+    byebug
+
+    #@post.forum = @forum
+    
+    
+    respond_to do |format|
+      if @post.save 
+        format.js
+      else
+        format.html { redirect_to Forum.find(@post.forum_id) }
+      end
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forum
       @forum = Forum.find(params[:id])
+      @posts = @forum.posts
+      @post = Post.new
     end
 
     # Only allow a list of trusted parameters through.
