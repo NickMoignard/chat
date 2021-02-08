@@ -1,11 +1,8 @@
+<!-- TODO #6 Collapsable Forums -->
+<!-- TODO: #7 Reddit Sidebar Partial -->
+<!-- TODO: #8 Filters and Tags -->
 <div class="container">
-    <% if user_signed_in? %>
-        <%= button_to "logout", destroy_user_session_path, method: :delete  %>
-        <p><%= @welcome_msg %>
-    <% else %>
-        <%= button_to "Sign In", new_user_session_path, method: :get %>
-        <p>not signed in</p>
-    <% end %>
+    
 
     <div>
         <% @forums.each do |forum| %>
@@ -13,11 +10,13 @@
                 <h2><%= forum.title %></h2>
                 <p><%= forum.description %></p>
                 <hr/>
-                <h4>Posts</h4>
+                <h4 class="mb-4">Posts</h4>
                 <% forum.posts.each do |post| %>
-                    <div class="post">
-                        <p><%= post.title %></p>
-                        <p class="username"><%= post.user.name %></p>
+                    <div class="post card mb-3">
+                        <div class="card-body" >
+                            <h5 class="card-title"><%= post.title %></h5>
+                            <p class="username card-text"><%= post.user.name %></p>
+                        </div>
                     </div>
                 <% end %>
             </div>
